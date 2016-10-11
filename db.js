@@ -7,4 +7,4 @@ module.exports = {
     'token_secret': 'supersecrettoken',
     'FACEBOOK_ID': 'yourfbid',
     'FACEBOOK_SECRET': 'secret'
-}''
+}
