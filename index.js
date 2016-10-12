@@ -129,7 +129,7 @@ app.get(
 );
 
 app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', { session: false, failureRedirect: "http://localhost:9000/" }),
+    passport.authenticate('facebook', { session: false, failureRedirect: "https://babyvoter.herokuapp.com/" }),
     function(req, res) {
         // var token = jwt.sign(req.user, "mysecret");
         // res.redirect("/client/index.html?sid="+token);
