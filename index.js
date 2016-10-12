@@ -138,7 +138,7 @@ app.get('/auth/facebook/callback',
         // res.set("token",token);
         // res.redirect("http://localhost:63342/sessionless-token-auth-with-express/client/web.html");
         // res.json({token : token});
-        res.redirect("http://localhost:9000/#/?sid=" + req.user.token);
+        res.redirect("https://babyvoter.herokuapp.com/#/?sid=" + req.user.token);
     }
 );
 
