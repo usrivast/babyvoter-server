@@ -88,11 +88,11 @@ passport.use(
                     // profileFields: ['id', 'displayName','name', 'emails', 'gender', 'photos']
 
                     console.log('emails == '+profile.emails);
-                    console.log('profile json '+profile._json);
+                    console.log('profile json '+profile._json.email);
 
                     user = new User({
                         displayName: profile.displayName,
-                        email: profile.emails[0].value || null,
+                        email: profile.emails?profile.emails[0].value : null,
                         username: profile.username,
                         provider: 'facebook',
                         //now in the future searching on User.findOne({'facebook.id': profile.id } will match because of this next line
