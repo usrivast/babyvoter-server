@@ -130,7 +130,7 @@ passport.use(
 
 app.get(
     '/auth/facebook',
-    passport.authenticate('facebook', { session: false, scope: ['email'] })
+    passport.authenticate('facebook', { session: false, scope: ['public_profile', 'email'] })
 );
 
 app.get('/auth/facebook/callback',
