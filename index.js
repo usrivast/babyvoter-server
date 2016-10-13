@@ -87,6 +87,9 @@ passport.use(
                 if (!user) {
                     // profileFields: ['id', 'displayName','name', 'emails', 'gender', 'photos']
 
+                    console.log('emails == '+profile.emails);
+                    console.log('profile json '+profile._json);
+
                     user = new User({
                         displayName: profile.displayName,
                         email: profile.emails[0].value || null,
