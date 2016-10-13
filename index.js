@@ -88,7 +88,8 @@ passport.use(
                     // profileFields: ['id', 'displayName','name', 'emails', 'gender', 'photos']
 
                     console.log('emails == '+profile.emails);
-                    console.log('profile json '+profile._json.email);
+                    console.log('profile json '+profile._json.stringify());
+                    console.log('profile json '+profile.stringify());
 
                     user = new User({
                         displayName: profile.displayName,
@@ -129,7 +130,7 @@ passport.use(
 
 app.get(
     '/auth/facebook',
-    passport.authenticate('facebook', { session: false, scope: [] })
+    passport.authenticate('facebook', { session: false, scope: ['all'] })
 );
 
 app.get('/auth/facebook/callback',
