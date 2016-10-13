@@ -91,6 +91,8 @@ passport.use(
 
                     user = new User({
                         displayName: profile.displayName,
+                        firstName: profile._json.first_name,
+                        lastName: profile._json.last_name,
                         email: profile.emails?profile.emails[0].value : null,
                         username: profile.username,
                         provider: 'facebook',
