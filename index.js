@@ -88,8 +88,6 @@ passport.use(
                     // profileFields: ['id', 'displayName','name', 'emails', 'gender', 'photos']
 
                     console.log('emails == '+profile.emails);
-                    console.log('profile json '+profile._json.stringify());
-                    console.log('profile json '+profile.stringify());
 
                     user = new User({
                         displayName: profile.displayName,

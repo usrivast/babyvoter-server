@@ -65,8 +65,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="132" column="82" selection-start-line="132" selection-start-column="82" selection-end-line="132" selection-end-column="82" />
+            <state relative-caret-position="238">
+              <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -285,7 +285,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/index.js</url>
-          <line>158</line>
+          <line>156</line>
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
@@ -361,8 +361,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="132" column="82" selection-start-line="132" selection-start-column="82" selection-end-line="132" selection-end-column="82" />
+        <state relative-caret-position="238">
+          <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
           <folding />
         </state>
       </provider>
