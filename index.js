@@ -82,13 +82,14 @@ passport.use(
                 if (err) {
                     return done(err);
                 }
+                console.log('FacebookStrategy');
                 //No user was found... so create a new user with values from Facebook (all the profile. stuff)
                 if (!user) {
                     // profileFields: ['id', 'displayName','name', 'emails', 'gender', 'photos']
 
                     user = new User({
                         displayName: profile.displayName,
-                        email: profile.emails[0].value,
+                        email: profile.emails[0].value || null,
                         username: profile.username,
                         provider: 'facebook',
                         //now in the future searching on User.findOne({'facebook.id': profile.id } will match because of this next line
