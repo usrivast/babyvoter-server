@@ -48,7 +48,7 @@ process.on('uncaughtException', function(err) {
 options = {
     clientID: '1757028757898172',
     clientSecret: 'da21badc2845c985e556f07e884544a9',
-    callbackURL: '/auth/facebook/callback',
+    callbackURL: 'https://arcane-peak-48225.herokuapp.com/auth/facebook/callback',
     profileFields: ['id', 'displayName','name', 'email', 'gender', 'photos']
 };
 
