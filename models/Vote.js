@@ -6,24 +6,29 @@ var mongoose = require('mongoose');
 // Create the VoteSchema.
 var VoteSchema = new mongoose.Schema({
     gender: {
-        type: [{
-            type: String,
-            enum: ['boy', 'girl']
-        }],
-        required: true
+        type: String,
+        enum: ['boy', 'girl'],
+        required: 'Please select the gender'
     },
     babyName: [{
-        type: String,
-        trim: true
+        name: String,
+        gender: {
+            type: String,
+            enum: ['boy', 'girl'],
+        },
+        upvotes: {
+            type: Number,
+            default: 0
+        }
     }],
     month: {
         type: String,
-        required: true,
+        required: 'Please select the month',
         default: 'January'
     },
     day: {
         type: Number,
-        required: true,
+        required: 'Please select the day',
         default: 1,
         min: 1
     },
@@ -35,24 +40,23 @@ var VoteSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    description: {
+    comment: {
         type: String,
         default: '',
         trim: true
     },
-    user: {
-        type: String,
-        trim: true,
-        required: true
-
-    }
-    // ,
     // user: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'User',
+    //     type: String,
+    //     trim: true,
     //     required: true
-    //     //, required: 'invalid category' // TODO: make tests pass valid category
+    //
     // }
+    // ,
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    }
 
 });
 
