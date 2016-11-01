@@ -4,5 +4,6 @@
 module.exports = {
     '/api/vote': require('./controllers/VoteController'),
     '/api/user': require('./controllers/UserController'),
-    '/api/me': require('./controllers/AuthController')
+    '/api/me': require('./controllers/AuthController'),
+    '/api/babyname': require('./controllers/BabyNameController')
 }

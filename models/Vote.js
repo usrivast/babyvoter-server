@@ -10,17 +10,6 @@ var VoteSchema = new mongoose.Schema({
         enum: ['boy', 'girl'],
         required: 'Please select the gender'
     },
-    babyName: [{
-        name: String,
-        gender: {
-            type: String,
-            enum: ['boy', 'girl'],
-        },
-        upvotes: {
-            type: Number,
-            default: 0
-        }
-    }],
     month: {
         type: String,
         required: 'Please select the month',
@@ -59,6 +48,16 @@ var VoteSchema = new mongoose.Schema({
     }
 
 });
+
+VoteSchema.add({
+        babyName: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'BabyName'
+        }]
+    }
+)
+
+
 
 // Export the vote schema.
 module.exports = VoteSchema;

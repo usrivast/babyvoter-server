@@ -4,5 +4,7 @@
 
 module.exports = {
     user: require('./User'),
-    vote: require('./Vote')
+    vote: require('./Vote'),
+    babyName: require('./BabyName')
+
 };
