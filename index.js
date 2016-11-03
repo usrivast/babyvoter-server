@@ -46,9 +46,10 @@ process.on('uncaughtException', function(err) {
 
 //facebook auth setup
 options = {
-    clientID: '1757028757898172',
-    clientSecret: 'da21badc2845c985e556f07e884544a9',
-    callbackURL: 'https://arcane-peak-48225.herokuapp.com/auth/facebook/callback',
+    clientID: '609091159257057',
+    clientSecret: '2e28ec2f26a0ae6794d8a8a26dbdad61',
+    // callbackURL: 'https://arcane-peak-48225.herokuapp.com/auth/facebook/callback',
+    callbackURL: 'http://localhost:3000/auth/facebook/callback',
     profileFields: ['id', 'displayName','name', 'email', 'gender', 'photos']
 };
 
@@ -143,7 +144,8 @@ app.get('/auth/facebook/callback',
         // res.set("token",token);
         // res.redirect("http://localhost:63342/sessionless-token-auth-with-express/client/web.html");
         // res.json({token : token});
-        res.redirect("https://babyvoter.herokuapp.com/#/?sid=" + req.user.token);
+        res.redirect("http://localhost:9000/#/?sid=" + req.user.token);
+        // res.redirect("https://babyvoter.herokuapp.com/#/?sid=" + req.user.token);
     }
 );
 
