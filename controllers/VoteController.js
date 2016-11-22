@@ -37,7 +37,7 @@ module.exports = function(app, route) {
             if (error) {
                 res.json({
                     result: false,
-                    data: "Error occured: " + err
+                    data: "Error occured: " + error
                 });
             } else {
                 var nameArr = req.body.babyName;
@@ -59,9 +59,11 @@ module.exports = function(app, route) {
                             data: "Error occured: " + err
                         });
                     } else {
-                        babyNames.forEach(function (babyName) {
-                            vote.babyName.push(babyName._id);
-                        })
+                        if(babyNames&&babyNames.length>0) {
+                            babyNames.forEach(function (babyName) {
+                                vote.babyName.push(babyName._id);
+                            })
+                        }
                         vote.save(function (error, vote) {
                             if (error) {
                                 res.json({

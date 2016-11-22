@@ -156,8 +156,8 @@ app.get(
     }
 );
 
-app.get(
-    '/api/',
+app.all(
+    '/api/*',
     passport.authenticate('bearer', { session: false }),
     function(req, res, next) {
         next();
@@ -172,21 +172,35 @@ app.get(
     function(req, res) {
         // res.redirect("http://localhost:9000?"+"sid=34534543");
         // res.send("LOGGED IN as " + req.user.facebookId + " - <a href=\"/logout\">Log out</a>");
+        var auth = req.headers.authorization;
+        var token;
+        if(auth){
+            token = auth.split(" ")[1];
+        }
 
         var User = mongoose.model('User', app.models.user);
 
-        User.findOne({token: req.headers.token}, function(err, user) {
+
+        User.findOne({token: token}, function(err, user) {
             if (err) {
                 res.json({
                     type: false,
                     data: "Error occured: " + err
                 });
             } else {
-                user.password = '';
-                res.json({
-                    type: true,
-                    data: user
-                });
+                if(user) {
+                    user.password = '';
+                    res.json({
+                        type: true,
+                        data: user
+                    });
+                } else {
+                    res.json({
+                        type: false,
+                        data: "UnAuthorized"
+                    });
+
+                }
             }
         });
 

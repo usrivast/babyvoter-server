@@ -47,15 +47,11 @@ var UserSchema = new Schema({
     email: {
         type: String,
         trim: true,
+        unique: 'Email already in use',
+        required: 'Please fill in your email',
         default: '',
         validate: [validateLocalStrategyProperty, 'Please fill in your email'],
         match: [/.+\@.+\..+/, 'Please fill a valid email address']
-    },
-    username: {
-        type: String,
-        // unique: 'testing error message',
-        // required: 'Please fill in a username',
-        trim: true
     },
     facebook: {
         type: JSON
@@ -66,7 +62,7 @@ var UserSchema = new Schema({
     password: {
         type: String,
         default: '',
-        // validate: [validateLocalStrategyPassword, 'Password should be longer']
+        validate: [validateLocalStrategyPassword, 'Password should be longer']
     },
     salt: {
         type: String,
@@ -100,8 +96,7 @@ var UserSchema = new Schema({
         type: Date
     },
     token: {
-        type: String,
-        // required: 'Provider is required'
+        type: String
     },
 });
 

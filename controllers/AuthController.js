@@ -62,55 +62,66 @@ module.exports = function(app, route) {
                 } else {
                     res.json({
                         type: false,
-                        data: "Incorrect email/password"
+                        data: "User doesnt exist. Click on register user to access the website or use Facebook to login"
                     });
                 }
             }
         });
     });
 
-    app.post('/signin', function(req, res) {
-        var User = mongoose.model('User', app.models.user);
-        User.findOne({email: req.body.email, password: req.body.password}, function(err, user) {
-            if (err) {
-                res.json({
-                    type: false,
-                    data: "Error occured: " + err
-                });
-            } else {
-                if (user) {
+    app.post('/signup', function(req, res) {
+        if(!req.body.email) {
+            res.json({
+                error: {
+                    message: "Email required"
+                }
+            })
+        } else {
+            var User = mongoose.model('User', app.models.user);
+            User.findOne({email: req.body.email}, function (err, user) {
+                if (err) {
                     res.json({
                         type: false,
-                        data: "User already exists!"
+                        data: "Error occured: " + err
                     });
                 } else {
-                    var userModel = new User();
-                    userModel.email = req.body.email;
-                    userModel.password = req.body.password;
-                    userModel.username = req.body.username;
-                    userModel.firstName = req.body.firstName;
-                    userModel.lastName = req.body.lastName;
-                    userModel.displayName = req.body.displayName;
-                    userModel.save(function(err, user) {
-                        if(err){
-                            res.json({
-                                type: false,
-                                data: "Error occured: " + err
-                            });
-                        }else {
-                            user.token = jwt.sign(user, dbconfig.token_secret);
-                            user.save(function (err, user1) {
+                    if (user) {
+                        res.json({
+                            error: {
+                                message: "User already exists!"
+                            }
+                        });
+                    } else {
+                        var userModel = new User();
+                        userModel.email = req.body.email;
+                        userModel.password = req.body.password;
+                        // userModel.username = req.body.username;
+                        userModel.firstName = req.body.firstName;
+                        userModel.lastName = req.body.lastName;
+                        userModel.displayName = req.body.firstName + ' '+req.body.lastName;
+                        userModel.facebook = req.body.facebook;
+                        userModel.save(function (err, user) {
+                            if (err) {
                                 res.json({
-                                    type: true,
-                                    data: user1,
-                                    token: user1.token
+                                    error: {
+                                        message: "Error occured: " + err
+                                    }
                                 });
-                            });
-                        }
-                    })
+                            } else {
+                                user.token = jwt.sign(user, dbconfig.token_secret);
+                                user.save(function (err, user1) {
+                                    res.json({
+                                        type: true,
+                                        data: user1,
+                                        token: user1.token
+                                    });
+                                });
+                            }
+                        })
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 
 
