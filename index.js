@@ -3,6 +3,7 @@ var passport = require('passport');
 var path        = require('path');
 var favicon     = require('static-favicon');
 var dbConfig    = require('./db.js');
+var fbConfig    = require('./fb.js');
 var mongoose    = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bodyParser  = require('body-parser');
@@ -46,13 +47,17 @@ process.on('uncaughtException', function(err) {
 
 //facebook auth setup
 options = {
-    clientID: '1757028757898172',
-    clientSecret: 'da21badc2845c985e556f07e884544a9',
-    callbackURL: 'https://arcane-peak-48225.herokuapp.com/auth/facebook/callback',
+    // clientID: '1757028757898172',
+    // clientSecret: 'da21badc2845c985e556f07e884544a9',
+    // callbackURL: 'https://arcane-peak-48225.herokuapp.com/auth/facebook/callback',
     // clientID: '609091159257057',
     // clientSecret: '2e28ec2f26a0ae6794d8a8a26dbdad61',
     // callbackURL: 'http://localhost:3000/auth/facebook/callback',
-    profileFields: ['id', 'displayName','name', 'email', 'gender', 'photos']
+    // profileFields: ['id', 'displayName','name', 'email', 'gender', 'photos']
+    clientID: fbConfig.clientID,
+    clientSecret: fbConfig.clientSecret,
+    callbackURL: fbConfig.callbackURL,
+    profileFields: fbConfig.profileFields
 };
 
 
@@ -137,7 +142,10 @@ app.get(
 );
 
 app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', { session: false, failureRedirect: "https://babyvoter.herokuapp.com/" }),
+    passport.authenticate('facebook', { session: false,
+        failureRedirect: "http://babyvoter.com/"
+        // failureRedirect: "http://localhost:9000/"
+    }),
     function(req, res) {
         // var token = jwt.sign(req.user, "mysecret");
         // res.redirect("/client/index.html?sid="+token);
@@ -147,7 +155,7 @@ app.get('/auth/facebook/callback',
         // res.redirect("http://localhost:63342/sessionless-token-auth-with-express/client/web.html");
         // res.json({token : token});
         // res.redirect("http://localhost:9000/#/?sid=" + req.user.token);
-        res.redirect("https://babyvoter.herokuapp.com/#/?sid=" + req.user.token);
+        res.redirect("http://www.babyvoter.com/#/?sid=" + req.user.token);
     }
 );
 
