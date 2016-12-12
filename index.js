@@ -96,6 +96,7 @@ passport.use(
                     // profileFields: ['id', 'displayName','name', 'emails', 'gender', 'photos']
 
                     console.log('emails == '+profile.emails);
+                    console.log('email == '+profile.email);
 
                     user = new User({
                         displayName: profile.displayName,
@@ -143,7 +144,7 @@ app.get(
 
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', { session: false,
-        failureRedirect: "http://babyvoter.com/"
+        failureRedirect: fbConfig.url
         // failureRedirect: "http://localhost:9000/"
     }),
     function(req, res) {
@@ -155,7 +156,7 @@ app.get('/auth/facebook/callback',
         // res.redirect("http://localhost:63342/sessionless-token-auth-with-express/client/web.html");
         // res.json({token : token});
         // res.redirect("http://localhost:9000/#/?sid=" + req.user.token);
-        res.redirect("http://www.babyvoter.com/#/?sid=" + req.user.token);
+        res.redirect(fbConfig.url+"/#/?sid=" + req.user.token);
     }
 );
 

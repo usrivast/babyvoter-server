@@ -15,6 +15,8 @@ module.exports = {
     'clientID': '1757028757898172',
     'clientSecret': 'da21badc2845c985e556f07e884544a9',
     'callbackURL': 'https://arcane-peak-48225.herokuapp.com/auth/facebook/callback',
-    'profileFields': ['id', 'displayName','name', 'email', 'gender', 'photos']
+    'profileFields': ['id', 'displayName','name', 'email', 'gender', 'photos'],
+    'url': 'http://www.babyvoter.com'
+    // 'url': 'http://localhost:9000'
 
 };
