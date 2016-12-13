@@ -22,6 +22,25 @@ module.exports = function(app, route) {
             });
     });
 
+    app.post('/api/voteByUser', function (req, res) {
+
+        Vote.find({user : req.body.user_id})
+            .populate('user','-password')
+            .populate('user','-token')
+            .populate('babyName')
+            .exec(function(err, vote) {
+                if (err) {
+                    res.json({
+                        type: false,
+                        data: "Error occured: " + err
+                    });
+                } else {
+                    res.json(vote);
+                }
+            });
+    });
+
+
     app.post('/api/vote/', function (req, res) {
         var BabyName = mongoose.model('BabyName', app.models.babyName);
         var Vote = mongoose.model('Vote', app.models.vote);
