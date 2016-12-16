@@ -35,7 +35,8 @@ module.exports = function(app, route) {
                         data: "Error occured: " + err
                     });
                 } else {
-                    res.json(vote);
+                    // res.json(vote);
+                    res.json();
                 }
             });
     });
